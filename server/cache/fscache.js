@@ -7,6 +7,7 @@ var diff = require('deep-diff').diff;
 var config = require('../config/config'); 
 
 var sizeOf = require('image-size');
+var fileExtension = require('file-extension');
 
 var _filecache = null;
 
@@ -21,18 +22,20 @@ const getFilesSync = (dir, fileList = []) => {
                 fileList.push( {[file]: getFilesSync(filePath)} )
             } else {
                 try {
-                    var st = fs.statSync(path.join(dir, file));
-                    var dims = sizeOf(path.join(dir, file))
-                    fileList.push(
-                        {
-                            name: file,
-                            path: dir.slice(config.iconfolder.length - 1),
-                            size: st.size,
-                            date: st.mtime,
-                            width: dims.width,
-                            height: dims.height
-                        }
-                    )
+                    if ( config.extensions.includes(fileExtension(file)) ) {
+                        var st = fs.statSync(path.join(dir, file));
+                        var dims = sizeOf(path.join(dir, file))
+                        fileList.push(
+                            {
+                                name: file,
+                                path: dir.slice(config.iconfolder.length - 1),
+                                size: st.size,
+                                date: st.mtime,
+                                width: dims.width,
+                                height: dims.height
+                            }
+                        )
+                    }
                 } catch(e) {
                     //Probably frowned upon, but simply ignoring the exception makes fileList contain only image-files that sizeOf accepts
                 }
@@ -58,7 +61,7 @@ const updateFileCache = async () => {
 updateFileCache();
 
 try {
-    watch(config.iconfolder, { recursive: true, delay: 1000 }, function(evt, name) {
+    watch(config.iconfolder, { recursive: true, delay: 10000 }, function(evt, name) {
         updateFileCache();
     });
 } catch(e) {

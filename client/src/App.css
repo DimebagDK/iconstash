@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?Titillium+Web');
+/*@import url('https://fonts.googleapis.com/css?Titillium+Web');
 
 html {
   position: relative;
@@ -19,6 +19,7 @@ body {
   margin-bottom: 0px;
 }
 
+
 .flex-row {
   display: flex;
   flex-wrap: wrap;
@@ -33,11 +34,24 @@ body {
 .flex-row.row:before {
   display: flex;
 }
-
+*/
 .trunc-text {
   white-space: nowrap; 
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+
+.my-masonry-grid {
+  display: --webkit-box; /* Not needed if autoprefixing */
+  display: --ms-flexbox; /* Not needed if autoprefixing */
+  display: flex;
+  margin-left: -12px; /* gutter size offset */
+  width: auto;
+}
+.my-masonry-grid_column {
+  padding-left: 12px; /* gutter size */
+  background-clip: padding-box;
 }
 
 

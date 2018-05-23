@@ -5,7 +5,7 @@
   "homepage": "/",
   "proxy": {
     "/api": {
-      "target": "http://localhost:3013",
+      "target": "http://localhost:3456",
       "pathRewrite": {
         "^/api": "api"
       },
@@ -41,14 +41,17 @@
     "html-webpack-plugin": "2.29.0",
     "jest": "20.0.4",
     "object-assign": "4.1.1",
+    "pimg": "^1.0.0",
     "postcss-flexbugs-fixes": "3.2.0",
     "postcss-loader": "2.0.8",
     "promise": "8.0.1",
     "raf": "3.4.0",
     "react": "^16.2.0",
     "react-bootstrap": "^0.32.1",
+    "react-bootstrap-theme-switcher": "^1.0.7",
     "react-dev-utils": "^5.0.0",
     "react-dom": "^16.2.0",
+    "react-masonry-css": "^1.0.11",
     "react-router-bootstrap": "^0.24.4",
     "react-router-dom": "^4.2.2",
     "reflux": "^6.4.1",
@@ -109,5 +112,8 @@
   },
   "eslintConfig": {
     "extends": "react-app"
+  },
+  "devDependencies": {
+    "copy-webpack-plugin": "^4.5.1"
   }
 }

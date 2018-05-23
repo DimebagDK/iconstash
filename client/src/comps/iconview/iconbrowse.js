@@ -6,9 +6,11 @@ import { Row, Col } from 'react-bootstrap';
 import Reflux from 'reflux';
 import iconStore from '../../stores/iconstore';
 
+import IconToolbar from './icontoolbar';
 import IconPath from './iconpath';
 import IconFolderNav from './iconfoldernav';
 import IconGrid from './icongrid';
+import IconList from './iconlist';
 
 class IconBrowse extends Reflux.Component {
 	constructor(props) {
@@ -81,6 +83,12 @@ class IconBrowse extends Reflux.Component {
 			<div>
 				<Row>
 					<Col lg={12}>
+						<IconToolbar />
+					</Col>
+				</Row>
+
+				<Row>
+					<Col lg={12}>
 						<IconPath items={pathparts} />
 					</Col>
 				</Row>
@@ -91,7 +99,10 @@ class IconBrowse extends Reflux.Component {
 					</Col>
 
 					<Col lg={10}>
-						<IconGrid items={_files} />
+						{this.state.iconViewStyle === 1
+						? <IconList items={_files} />
+						: <IconGrid items={_files} />
+						}
 					</Col>
 				</Row>
 			</div>

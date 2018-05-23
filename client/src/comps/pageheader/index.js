@@ -1,7 +1,20 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
-import { Nav, Navbar, NavItem, Button, FormGroup, FormControl, InputGroup } from 'react-bootstrap';
+import { 	Nav, 
+			Navbar, 
+			NavItem, 
+			Button, 
+			FormGroup, 
+			FormControl, 
+			InputGroup,
+			ButtonToolbar, 
+			ButtonGroup,
+			ToggleButton, 
+			ToggleButtonGroup, 
+			Clearfix } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
+
+import { ThemeChooser } from 'react-bootstrap-theme-switcher';
 
 import Reflux from 'reflux';
 import iconStore, { iconActions } from '../../stores/iconstore';
@@ -17,13 +30,21 @@ class PageHeader extends Reflux.Component {
 	updateClick = () => {
 		iconActions.pullIcons();
 	};
+	btnLightClick = (e) => {
+        e.preventDefault();
+        iconActions.setAppTheme(1);
+    }
+	btnDarkClick = (e) => {
+        e.preventDefault();
+        iconActions.setAppTheme(2);
+    }
 	searchClick = e => {
 		e.preventDefault();
 		this.props.history.push('/search/' + encodeURIComponent(this.state.searchfor));
 	};
 	render() {
 		return (
-			<Navbar fixedTop collapseOnSelect>
+			<Navbar collapseOnSelect bsStyle={this.state.appTheme === 1 ? 'default':'inverse'}>
 				<Navbar.Header>
 					<Navbar.Brand>
 						<Link to="/">Icon Stash</Link>
@@ -35,26 +56,41 @@ class PageHeader extends Reflux.Component {
 					<Nav>
 						<LinkContainer to="/icons">
 							<NavItem>
-								<span className="fa fa-image" /> Icons
+								<span className="fa fa-image" /> Browse
+							</NavItem>
+						</LinkContainer>
+						<LinkContainer to="/search">
+							<NavItem>
+								<span className="fa fa-search" /> Search
 							</NavItem>
 						</LinkContainer>
 					</Nav>
 
+					
 					<Nav pullRight>
-						{this.state.isLoading && (
-							<NavItem>
-								<span className="fa fa-pull-right fa-lg fa-refresh fa-spin" />
-							</NavItem>
-						)}
-						{!this.state.isLoading && (
-							<NavItem>
-								<span onClick={this.updateClick} className="fa fa-pull-right fa-lg fa-refresh" />
-							</NavItem>
-						)}
+						<div className=" container-fluid text-right navbar-form">
+							<ButtonToolbar>
+								<ButtonGroup>
+									{this.state.isLoading && (
+										<Button><span className="fa fa-refresh fa-spin" /></Button>
+									)}
+									{!this.state.isLoading && (
+										<Button onClick={this.updateClick}><span className="fa fa-refresh" /></Button>
+									)}
+								</ButtonGroup>
+							</ButtonToolbar>
+						</div>
+					</Nav>
+
+					<Nav pullRight>
+						<div className=" container-fluid text-right navbar-form">
+							<ThemeChooser />
+						</div>
 					</Nav>
 
 					<div className="container-fluid text-center navbar-form">
-						<FormGroup>
+					
+						<FormGroup >
 							<InputGroup>
 								<FormControl
 									type="text"

@@ -6,7 +6,9 @@ import { Row, Col } from 'react-bootstrap';
 import Reflux from 'reflux';
 import iconStore from '../../stores/iconstore';
 
+import IconToolbar from './icontoolbar';
 import IconGrid from './icongrid';
+import IconList from './iconlist';
 
 import Fuse from 'fuse.js';
 
@@ -75,6 +77,13 @@ class IconSearch extends Reflux.Component {
 
 		return (
 			<div>
+
+				<Row>
+					<Col lg={12}>
+						<IconToolbar />
+					</Col>
+				</Row>
+
 				<Row>
 					<Col lg={12}>
 						<h3>Search [ {_searchterm} ]</h3>
@@ -84,7 +93,10 @@ class IconSearch extends Reflux.Component {
 
 				<Row>
 					<Col lg={12}>
-						<IconGrid items={_files} />
+					{this.state.iconViewStyle === 1
+						? <IconList items={_files} />
+						: <IconGrid items={_files} />
+						}
 					</Col>
 				</Row>
 			</div>

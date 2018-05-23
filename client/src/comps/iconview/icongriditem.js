@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Col, Image, Panel } from 'react-bootstrap';
-
+import { Panel } from 'react-bootstrap';
+import Image from 'pimg';
 import filesize from 'filesize.js';
 
 class IconGridItem extends Component {
@@ -8,15 +8,29 @@ class IconGridItem extends Component {
 		const { src, alt, name, size, path, width, height } = this.props;
 		var fs = filesize(size);
 
-		const headerStyle = {
+		const pnlHeaderStyle = {
 			'padding-top': '4px',
 			'padding-bottom': '4px'
 		};
+		const pnlFooterStyle = {
+			'padding-top': '4px',
+			'padding-bottom': '4px'
+		};
+		const pnlBodyStyle = {
+			//'background-color':'#F9F9F9'
+		}
+
+		const imgStyle = {
+			'max-width': '100%',
+		}
+
+
+		//<Col xs={6} md={4} lg={3}>
 
 		return (
-			<Col xs={6} md={4} lg={3}>
+			
 				<Panel>
-					<Panel.Heading style={headerStyle}>
+					<Panel.Heading style={pnlHeaderStyle}>
 						<strong>
 							<div className="trunc-text" title={name}>
 								{name}
@@ -27,11 +41,17 @@ class IconGridItem extends Component {
 						</div>
 					</Panel.Heading>
 
-					<Panel.Body>
-						<Image src={src} alt={alt} className="center-block" responsive />
+					<Panel.Body style={pnlBodyStyle}>
+						<Image 
+							fetchOnDemand 
+							src={src} 
+							alt={alt} 
+							className="center-block" 
+							style={imgStyle}
+						/>
 					</Panel.Body>
 
-					<Panel.Footer style={headerStyle}>
+					<Panel.Footer style={pnlFooterStyle}>
 						<span className="text-center2">
 							<div className="small">
 								<strong>Size :</strong> {fs}
@@ -45,7 +65,7 @@ class IconGridItem extends Component {
 						</span>
 					</Panel.Footer>
 				</Panel>
-			</Col>
+			
 		);
 	}
 }

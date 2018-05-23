@@ -5,7 +5,7 @@ var config = require('../../../config/config');
 
 router.get('/*', function (req, res, next) {   
 
-    var fn = req.url; //decodeURIComponent(req.query.fn);
+    var fn = decodeURIComponent(req.url); //decodeURIComponent(req.query.fn);
 
     if (fn && fn.length > 0 && fn.charAt(0) === '/') {
         fn = fn.substr(1);

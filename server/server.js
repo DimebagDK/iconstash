@@ -8,7 +8,7 @@ var favicon = require('serve-favicon');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-//var cors = require('cors')
+var cors = require('cors')
 
 var config = require('./config/config'); 
 
@@ -18,7 +18,7 @@ require('./cache/fscache');
 
 var app = express();
 
-//app.use(cors())
+app.use(cors())
 
 const server = http.createServer(app);
 

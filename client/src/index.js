@@ -2,6 +2,8 @@ import React from 'react';
 import { BrowserRouter } from 'react-router-dom'
 import ReactDOM from 'react-dom';
 
+import { ThemeSwitcher } from 'react-bootstrap-theme-switcher';
+
 import App from './App';
 
 //ServiceWorker fucks up the routing, so that you can't link/open an image directly
@@ -10,8 +12,12 @@ import App from './App';
 import { unregister } from './registerServiceWorker';
 
 ReactDOM.render((
+    <ThemeSwitcher defaultTheme="cyborg" storeThemeKey="iconstashtheme" >
+
     <BrowserRouter>
         <App />
     </BrowserRouter>
+
+    </ThemeSwitcher>
 ), document.getElementById('root'));
 unregister();

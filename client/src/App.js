@@ -6,9 +6,15 @@ import { Grid, Row } from 'react-bootstrap';
 import Reflux from 'reflux';
 import iconStore, { iconActions } from './stores/iconstore';
 
-import './css/bootstrap.css';
-import './css/bootstrap-theme.css';
+
+
+//import './css/bootstrap.css';
+//import './css/bootstrap-theme.css';
 import './App.css';
+
+import './font-awesome/css/font-awesome.css';
+
+
 
 import PageHeader from './comps/pageheader';
 import PageFooter from './comps/pagefooter';
@@ -27,6 +33,7 @@ class App extends Reflux.Component {
 	}
 	render() {
 		return (
+			
 			<BrowserRouter>
 				<div>
 					<Grid>
@@ -52,6 +59,7 @@ class App extends Reflux.Component {
 					</Grid>
 				</div>
 			</BrowserRouter>
+			
 		);
 	}
 }
